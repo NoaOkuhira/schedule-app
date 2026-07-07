@@ -29,6 +29,14 @@ function Calendar() {
 
     const startDay = firstDay === 0 ? 6 : firstDay - 1;
 
+    const today = new Date();
+
+    const isCurrentMonth =
+    today.getFullYear() === year &&
+    today.getMonth() === month;
+
+    const todayDate = today.getDate();
+
     const days = [];
 
     for (let i = 0; i < startDay; i++) {
@@ -77,14 +85,18 @@ function Calendar() {
 
                 {days.map((day, index) => (
 
-            <div
-                key={index}
-                className="day"
-            >
-                {day}
-            </div>
+                <div
+                    key={index}
+                    className={
+                        isCurrentMonth && day === todayDate
+                        ? "day today"
+                        : "day"
+                    }
+                >
+                    {day}
+                </div>
 
-            ))}
+                ))}
 
             </div>
 

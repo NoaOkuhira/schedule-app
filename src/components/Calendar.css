@@ -53,3 +53,15 @@
     box-sizing:border-box;
 
 }
+
+.today{
+
+    background:#4a90e2;
+
+    color:white;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+}
