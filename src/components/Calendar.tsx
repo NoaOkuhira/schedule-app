@@ -1,32 +1,96 @@
-function Calendar(){
+import { useState } from "react";
+import "./Calendar.css";
 
-    return(
+function Calendar() {
 
-        <div>
+    const [currentDate, setCurrentDate] = useState(new Date());
 
-            <h2>
+    function previousMonth() {
+        const newDate = new Date(currentDate);
+        newDate.setMonth(newDate.getMonth() - 1);
+        setCurrentDate(newDate);
+    }
 
-                ←
+    function nextMonth() {
+        const newDate = new Date(currentDate);
+        newDate.setMonth(newDate.getMonth() + 1);
+        setCurrentDate(newDate);
+    }
 
-                2026年7月
+    const week = ["月", "火", "水", "木", "金", "土", "日"];
 
-                →
+    const year = currentDate.getFullYear();
 
-            </h2>
+    const month = currentDate.getMonth();
 
-            <p>
+    const lastDay = new Date(year, month + 1, 0).getDate();
 
-                月 火 水 木 金 土 日
+    const firstDay = new Date(year, month, 1).getDay();
 
-            </p>
+    const startDay = firstDay === 0 ? 6 : firstDay - 1;
 
-            <hr/>
+    const days = [];
 
-            カレンダーはDay3で完成
+    for (let i = 0; i < startDay; i++) {
+        days.push("");
+    }
+
+    for (let i = 1; i <= lastDay; i++) {
+        days.push(i);
+    }
+
+    return (
+
+        <div className="calendar">
+
+            <div className="calendar-header">
+
+                <button onClick={previousMonth}>←</button>
+
+                <h2>
+
+                    {currentDate.getFullYear()}年
+
+                    {currentDate.getMonth() + 1}月
+
+                </h2>
+
+                <button onClick={nextMonth}>→</button>
+
+            </div>
+
+            <div className="week">
+
+                {week.map((day) => (
+
+                    <div key={day}>
+
+                        {day}
+
+                    </div>
+
+                ))}
+
+            </div>
+
+            <div className="days">
+
+                {days.map((day, index) => (
+
+            <div
+                key={index}
+                className="day"
+            >
+                {day}
+            </div>
+
+            ))}
+
+            </div>
 
         </div>
 
-    )
+    );
 
 }
 

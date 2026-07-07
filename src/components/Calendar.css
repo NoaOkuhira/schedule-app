@@ -1,0 +1,55 @@
+.calendar{
+
+    margin:30px;
+
+}
+
+.calendar-header{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.week{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    margin-top:20px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+}
+
+.days{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.day{
+
+    min-height:90px;
+
+    border:1px solid #ccc;
+
+    padding:5px;
+
+    box-sizing:border-box;
+
+}
