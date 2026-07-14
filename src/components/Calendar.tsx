@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./Calendar.css";
+import type { Schedule } from "../types/Schedule";
 
 function Calendar() {
+
 
     const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -19,6 +21,24 @@ function Calendar() {
 
     const week = ["月", "火", "水", "木", "金", "土", "日"];
 
+    const schedules: Schedule[] = [
+        {
+            id: 1,
+            day: 7,
+            title: "AWS勉強"
+        },
+        {
+            id: 2,
+            day: 18,
+            title: "病院"
+        },
+        {
+            id: 3,
+            day: 25,
+            title: "買い物"
+        }
+    ];
+
     const year = currentDate.getFullYear();
 
     const month = currentDate.getMonth();
@@ -32,8 +52,8 @@ function Calendar() {
     const today = new Date();
 
     const isCurrentMonth =
-    today.getFullYear() === year &&
-    today.getMonth() === month;
+        today.getFullYear() === year &&
+        today.getMonth() === month;
 
     const todayDate = today.getDate();
 
@@ -85,23 +105,38 @@ function Calendar() {
 
                 {days.map((day, index) => (
 
-                <div
-                    key={index}
-                    className={
-                        isCurrentMonth && day === todayDate
-                        ? "day today"
-                        : "day"
-                    }
-                >
-                    {day}
-                </div>
+                    <div
+                        key={index}
+                        className={
+                            isCurrentMonth && day === todayDate
+                                ? "day today"
+                                : "day"
+                        }
+                    >
+
+                        <div className="day-number">
+                            {day}
+                        </div>
+
+                        {schedules
+                            .filter(schedule => schedule.day === day)
+                            .map(schedule => (
+
+                                <div
+                                    key={schedule.id}
+                                    className="schedule"
+                                >
+                                    {schedule.title}
+                                </div>
+
+                            ))}
+
+                    </div>
 
                 ))}
 
             </div>
-
         </div>
-
     );
 
 }
