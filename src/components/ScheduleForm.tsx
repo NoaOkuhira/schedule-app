@@ -1,53 +1,56 @@
 import { useState } from "react";
+import type { Schedule } from "../types/Schedule";
 
+type ScheduleFormProps = {
+  onSave: (schedule: Schedule) => void;
+};
 
-function ScheduleForm() {
-    const [day, setDay] = useState("");
+function ScheduleForm({ onSave }: ScheduleFormProps) {
+  const [day, setDay] = useState("");
 
-    const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("");
 
-    function saveSchedule() {
-        console.log(day);
-        console.log(title);
-    }
+  function saveSchedule() {
+    const newSchedule: Schedule = {
+      id: Date.now(),
+      day: Number(day),
+      title: title,
+    };
 
-    return (
-        <div>
+    onSave(newSchedule);
+  }
 
-            <h2>予定追加</h2>
+  return (
+    <div>
+      <h2>予定追加</h2>
 
-            <div>
-                <label>日付</label>
-                <br />
-                <input
-                    type="number"
-                    value={day}
-                    onChange={(event) => setDay(event.target.value)}
-                />
-            </div>
+      <div>
+        <label>日付</label>
+        <br />
+        <input
+          type="number"
+          value={day}
+          onChange={(event) => setDay(event.target.value)}
+        />
+      </div>
 
-            <br />
+      <br />
 
-            <div>
-                <label>タイトル</label>
-                <br />
-                <input
-                type="text"
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
-            />
-            </div>
+      <div>
+        <label>タイトル</label>
+        <br />
+        <input
+          type="text"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+      </div>
 
-            <br />
+      <br />
 
-            <button onClick={saveSchedule}>
-
-                保存
-
-            </button>
-
-        </div>
-    );
+      <button onClick={saveSchedule}>保存</button>
+    </div>
+  );
 }
 
 export default ScheduleForm;

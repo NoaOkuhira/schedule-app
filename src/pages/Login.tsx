@@ -1,24 +1,23 @@
 function Login() {
-    return (
-        <div>
-            <h1>ログイン</h1>
+  return (
+    <div>
+      <h1>ログイン</h1>
 
-            <input placeholder="メールアドレス" />
+      <input placeholder="メールアドレス" />
 
-            <br /><br />
+      <br />
+      <br />
 
-            <input
-                type="password"
-                placeholder="パスワード"
-            />
+      <input type="password" placeholder="パスワード" />
 
-            <br /><br />
+      <br />
+      <br />
 
-            <button>ログイン</button>
+      <button>ログイン</button>
 
-            <button>新規登録</button>
-        </div>
-    )
+      <button>新規登録</button>
+    </div>
+  );
 }
 
-export default Login
+export default Login;
