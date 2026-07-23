@@ -1,8 +1,14 @@
+import { useState } from "react";
+
 import Header from "../components/Header";
 import Calendar from "../components/Calendar";
 import TodaySchedule from "../components/TodaySchedule";
+import AddButton from "../components/AddButton";
+import ScheduleForm from "../components/ScheduleForm";
 
 function Home(){
+
+    const [showForm, setShowForm] = useState(false);
 
     return(
 
@@ -14,11 +20,11 @@ function Home(){
 
             <TodaySchedule/>
 
-            <button>
+            <AddButton
+                onClick={() => setShowForm(!showForm)}
+            />
 
-                予定追加
-
-            </button>
+            {showForm && <ScheduleForm />}
 
             <button>
 
